@@ -10,27 +10,23 @@ const navigation = [
   { to: "/practice", label: "Практика", icon: MessageCircleMore }
 ]
 
-const pageMeta: Record<string, { eyebrow: string; title: string }> = {
-  "/": { eyebrow: "Понедельник, 24 августа", title: "Главная" },
-  "/library": { eyebrow: "Твои коллекции", title: "Библиотека" },
-  "/practice": { eyebrow: "Сессия 1 из 5", title: "Практика" }
+const pageTitles: Record<string, string> = {
+  "/": "Главная",
+  "/library": "Библиотека",
+  "/practice": "Практика"
 }
 
 export function AppShell() {
   const { pathname } = useLocation()
-  const current = pageMeta[pathname] ?? pageMeta["/"]
+  const currentTitle = pageTitles[pathname] ?? pageTitles["/"]
 
   return (
     <div className="app-shell">
       <aside className="sidebar" aria-label="Основная навигация">
         <div className="brand">
           <span className="brand-mark"><Sparkles size={20} /></span>
-          <span>
-            <small>English chunks</small>
-            <strong>Chunky</strong>
-          </span>
+          <strong>Chunky</strong>
         </div>
-        <p className="nav-label">Навигация</p>
         <nav className="nav-list">
           {navigation.map(({ to, label, icon: Icon }) => (
             <NavLink key={to} to={to} end={to === "/"} className={({ isActive }) => cn("nav-item", isActive && "active")}>
@@ -40,7 +36,6 @@ export function AppShell() {
           ))}
         </nav>
         <div className="sidebar-footer">
-          <p className="nav-label">Сегодня</p>
           <div><span>Серия</span><strong>14 дней</strong></div>
           <div><span>Учёба</span><strong>18 мин</strong></div>
         </div>
@@ -48,10 +43,7 @@ export function AppShell() {
 
       <main className="main">
         <header className="top-app-bar">
-          <div>
-            <p>{current.eyebrow}</p>
-            <h1>{current.title}</h1>
-          </div>
+          <h1>{currentTitle}</h1>
           <div className="top-actions">
             <Button variant="ghost" size="icon" aria-label="Поиск"><Search size={20} /></Button>
             <Button variant="ghost" size="icon" aria-label="Настройки"><Settings size={20} /></Button>

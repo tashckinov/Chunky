@@ -50,7 +50,7 @@ export function LibraryPage() {
         </Card>
         <Card>
           <CardHeader><div><CardTitle>AI Insight</CardTitle><CardDescription>После <strong>I don’t mind</strong> полезно сравнить оттенки с <strong>I’m fine with that</strong> и <strong>I don’t care</strong>.</CardDescription></div></CardHeader>
-          <CardContent className="flex flex-wrap gap-2"><Badge>contrast pair</Badge><Badge>usage note</Badge><Badge>next</Badge></CardContent>
+          <CardContent className="flex flex-wrap gap-2"><Badge>meaning nuances</Badge><Badge>usage note</Badge><Badge>next</Badge></CardContent>
         </Card>
       </section>
     </>

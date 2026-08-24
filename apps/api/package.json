@@ -13,10 +13,13 @@
     "db:migrate:prod": "node dist/scripts/migrate.js"
   },
   "dependencies": {
+    "@adminjs/fastify": "^4.2.0",
+    "@adminjs/sql": "^2.2.6",
     "@fastify/cors": "^11.1.0",
     "@fastify/postgres": "^6.0.2",
     "@fastify/type-provider-typebox": "^5.2.0",
     "@sinclair/typebox": "^0.34.40",
+    "adminjs": "^7.8.17",
     "dotenv": "^17.2.1",
     "fastify": "^5.5.0",
     "fastify-plugin": "^5.0.1",

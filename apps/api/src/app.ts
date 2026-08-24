@@ -3,6 +3,7 @@ import { TypeBoxTypeProvider } from "@fastify/type-provider-typebox"
 import Fastify from "fastify"
 
 import { loadConfig, type AppConfig } from "./config.js"
+import { registerAdmin } from "./plugins/admin.js"
 import { postgresPlugin } from "./plugins/postgres.js"
 import { evaluationRoutes } from "./routes/evaluations.js"
 import { healthRoutes } from "./routes/health.js"
@@ -12,6 +13,7 @@ export async function buildApp(config: AppConfig = loadConfig()) {
 
   await app.register(cors, { origin: config.webOrigin, credentials: true })
   await app.register(postgresPlugin, { config })
+  await registerAdmin(app, config)
   await app.register(healthRoutes, { config })
   await app.register(evaluationRoutes, { config })
 

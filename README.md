@@ -21,8 +21,19 @@ npm run dev
 
 Web: `http://localhost:5173`
 API health: `http://localhost:3000/health`
+AdminJS: `http://localhost:3000/admin`
 
 The default `AI_PROVIDER=mock` keeps local practice usable without API keys. Set `AI_PROVIDER=openai` or `AI_PROVIDER=anthropic` and the corresponding key/model for a real evaluator.
+
+## AdminJS
+
+AdminJS uses the same PostgreSQL database and runs inside the Fastify API. The first migration creates the product tables; `002_admin_sessions.sql` adds persistent administrator sessions.
+
+- Decks and chunks: create, edit, filter, and delete.
+- Users and reviews: view and filter.
+- Product sessions, passkeys, schema migrations, and administrator sessions: hidden.
+
+Admin access starts disabled. Set `ADMIN_ENABLED=true`, `ADMIN_EMAIL`, `ADMIN_PASSWORD`, and an `ADMIN_COOKIE_SECRET` with at least 32 characters. Use unique production values, HTTPS, and private network access through a VPN or Tailscale.
 
 ## shadcn/ui and MCP
 

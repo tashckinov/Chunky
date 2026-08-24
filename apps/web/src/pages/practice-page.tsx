@@ -1,4 +1,4 @@
-import { Check, Mic, RefreshCw, Target } from "lucide-react"
+import { Check, Mic, RefreshCw } from "lucide-react"
 import { FormEvent, useState } from "react"
 
 import { Badge } from "@/components/ui/badge"
@@ -10,7 +10,7 @@ import { evaluateAnswer, type EvaluationResult } from "@/lib/api"
 const task = { targetChunk: "I didn’t get…", promptRu: "Я не понял конец этого фильма." }
 
 export function PracticePage() {
-  const [answer, setAnswer] = useState("I didn’t get the ending of the movie.")
+  const [answer, setAnswer] = useState("")
   const [result, setResult] = useState<EvaluationResult | null>(null)
   const [error, setError] = useState("")
   const [loading, setLoading] = useState(false)
@@ -32,14 +32,14 @@ export function PracticePage() {
     <section className="practice-grid">
       <Card>
         <CardHeader>
-          <div><small className="eyebrow">Целевой chunk</small><CardTitle className="mt-1 text-3xl">{task.targetChunk}</CardTitle></div>
-          <Badge className="border-transparent bg-secondary text-secondary-foreground"><Target size={15} />focus phrase</Badge>
+          <CardTitle className="text-3xl">{task.targetChunk}</CardTitle>
+          <Badge className="border-transparent bg-secondary text-secondary-foreground">1 из 5</Badge>
         </CardHeader>
         <CardContent>
-          <div className="practice-prompt"><small>Задание</small><h2>{task.promptRu}</h2><p>Составь естественную фразу с целевым chunk.</p></div>
+          <div className="practice-prompt"><h2>{task.promptRu}</h2></div>
           <form onSubmit={submit} className="mt-4">
             <label className="answer-label" htmlFor="answer">Твой ответ</label>
-            <Textarea id="answer" value={answer} onChange={(event) => setAnswer(event.target.value)} autoFocus />
+            <Textarea id="answer" value={answer} onChange={(event) => setAnswer(event.target.value)} placeholder="Фраза на английском" autoFocus />
             <div className="action-row">
               <Button type="submit" disabled={loading || !answer.trim()}><Check size={18} />{loading ? "Проверяем…" : "Проверить"}</Button>
               <Button type="button" variant="secondary"><Mic size={18} />Сказать вслух</Button>
@@ -54,7 +54,7 @@ export function PracticePage() {
         <Card className={result ? "feedback-card success" : "feedback-card"} aria-live="polite">
           <CardHeader>
             <span className="feedback-icon"><Check size={20} /></span>
-            <div><CardTitle className="text-lg">{result ? verdictLabel(result.verdict) : "AI-проверка"}</CardTitle><CardDescription>{result ? `${result.score}/100 • ${result.criteria.chunkUsed ? "целевой chunk использован" : "добавь целевой chunk"}` : "Отправь ответ, чтобы увидеть разбор."}</CardDescription></div>
+            <div><CardTitle className="text-lg">{result ? verdictLabel(result.verdict) : "Проверка ответа"}</CardTitle>{result && <CardDescription>{result.score}/100 · {result.criteria.chunkUsed ? "chunk использован" : "добавь целевой chunk"}</CardDescription>}</div>
           </CardHeader>
           {result && <CardContent><p className="feedback-text">{result.feedbackRu}</p><strong className="natural-answer">{result.naturalAnswer}</strong></CardContent>}
         </Card>

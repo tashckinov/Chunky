@@ -35,10 +35,6 @@ export function AppShell() {
             </NavLink>
           ))}
         </nav>
-        <div className="sidebar-footer">
-          <div><span>Серия</span><strong>14 дней</strong></div>
-          <div><span>Учёба</span><strong>18 мин</strong></div>
-        </div>
       </aside>
 
       <main className="main">

@@ -11,7 +11,8 @@ const config: AppConfig = {
   webOrigin: "http://localhost:5173",
   aiProvider: "mock",
   openAiModel: "test",
-  anthropicModel: "test"
+  anthropicModel: "test",
+  adminEnabled: false
 }
 
 test("health route reports ready", async () => {
@@ -34,5 +35,12 @@ test("evaluation route returns structured JSON", async () => {
   assert.equal(result.verdict, "correct")
   assert.equal(result.criteria.chunkUsed, true)
   assert.equal(typeof result.naturalAnswer, "string")
+  await app.close()
+})
+
+test("admin routes stay closed when AdminJS is disabled", async () => {
+  const app = await buildApp(config)
+  const response = await app.inject({ method: "GET", url: "/admin" })
+  assert.equal(response.statusCode, 404)
   await app.close()
 })

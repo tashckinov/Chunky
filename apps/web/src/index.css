@@ -50,8 +50,6 @@ button { cursor: pointer; }
 .nav-item { min-height: 52px; padding: 0 16px; display: flex; align-items: center; gap: 12px; border-radius: 999px; color: var(--muted-foreground); font-size: 15px; font-weight: 600; transition: background .15s ease, color .15s ease; }
 .nav-item:hover { background: var(--surface-container-low); color: var(--foreground); }
 .nav-item.active { background: var(--secondary); color: var(--secondary-foreground); }
-.sidebar-footer { margin-top: auto; padding: 16px 12px 6px; display: grid; gap: 10px; border-top: 1px solid var(--outline-variant); }
-.sidebar-footer div { display: flex; justify-content: space-between; gap: 12px; color: var(--muted-foreground); font-size: 13px; }
 .main { width: 100%; min-width: 0; display: flex; flex-direction: column; gap: 20px; }
 .page-content { width: 100%; min-width: 0; display: flex; flex-direction: column; gap: 20px; }
 .page-content > * { width: 100%; min-width: 0; }
@@ -65,7 +63,8 @@ button { cursor: pointer; }
 .hero-card p { max-width: 760px; margin: 14px 0 0; color: var(--muted-foreground); font-size: 17px; line-height: 1.55; }
 .hero-badge { width: 132px; height: 132px; border-radius: 38px; display: grid; place-items: center; color: var(--primary); background: linear-gradient(145deg, var(--primary-container), var(--tertiary-container)); }
 .action-row { margin-top: 22px; display: flex; flex-wrap: wrap; gap: 10px; }
-.metric-grid, .deck-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; }
+.metric-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; }
+.deck-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
 .metric-card { padding: 22px; }
 .metric-card > span { color: var(--muted-foreground); font-size: 13px; }
 .metric-card > strong { display: block; margin-top: 10px; font-size: 48px; line-height: 1; letter-spacing: -.05em; }
@@ -106,7 +105,7 @@ button { cursor: pointer; }
   body { padding-bottom: 82px; }
   .app-shell { display: block; padding: 18px; }
   .sidebar { position: fixed; inset: auto 12px 12px; z-index: 20; min-height: auto; padding: 7px; border: 1px solid var(--outline-variant); border-radius: 24px; background: color-mix(in srgb, var(--card) 92%, transparent); box-shadow: 0 8px 30px rgb(30 33 40 / 14%); backdrop-filter: blur(18px); }
-  .brand, .sidebar-footer { display: none; }
+  .brand { display: none; }
   .nav-list { display: grid; grid-template-columns: repeat(3, 1fr); gap: 4px; }
   .nav-item { min-height: 56px; justify-content: center; padding: 0 12px; }
   .content-grid, .practice-grid { grid-template-columns: 1fr; }

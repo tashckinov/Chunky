@@ -16,8 +16,8 @@ export function HomePage() {
     <>
       <Card className="hero-card">
         <div>
-          <h2>Учись не словам, а готовым конструкциям.</h2>
-          <p>Сегодня у тебя 23 чанка на повторение. Начни с короткой сессии, а затем закрепи их через перевод и контекст.</p>
+          <h2>Осваивай готовые конструкции для живой речи.</h2>
+          <p>Сегодня у тебя 23 чанка на повторение. Начни с короткой сессии. Закрепи их через перевод и контекст.</p>
           <div className="action-row">
             <Button asChild><Link to="/practice"><Play size={18} fill="currentColor" />Продолжить урок</Link></Button>
             <Button variant="secondary"><Bell size={18} />Напоминания</Button>

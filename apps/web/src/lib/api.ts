@@ -26,7 +26,7 @@ export async function evaluateAnswer(payload: {
   })
 
   if (!response.ok) {
-    throw new Error("Не удалось получить проверку")
+    throw new Error("Сервис проверки временно недоступен")
   }
 
   return response.json() as Promise<EvaluationResult>

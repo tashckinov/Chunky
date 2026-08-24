@@ -35,7 +35,7 @@ npx shadcn@latest add dialog -c apps/web
 ## Deploy
 
 - Frontend: set the project root to `apps/web` on Cloudflare Pages or Vercel; build with `npm run build`, output `dist`.
-- API: deploy `apps/api` on the VPS, run `npm run build -w @chunky/api`, then `npm run start -w @chunky/api`.
+- API: build the root-context image with `docker build -f apps/api/Dockerfile .`, or run `npm run build -w @chunky/api` and `npm run start -w @chunky/api` on the VPS.
 - Database: provide `DATABASE_URL` and run `npm run db:migrate` during release.
 
 Keep AI keys only on the API host. Never expose them through `VITE_*` variables.

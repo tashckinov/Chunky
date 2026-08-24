@@ -32,6 +32,14 @@ The checked-in `components.json` targets `apps/web`, and `.mcp.json` exposes the
 npx shadcn@latest add dialog -c apps/web
 ```
 
+Codex CLI keeps MCP configuration in the user's config rather than the repository. Add this once to `~/.codex/config.toml`, then restart Codex:
+
+```toml
+[mcp_servers.shadcn]
+command = "npx"
+args = ["shadcn@latest", "mcp"]
+```
+
 ## Deploy
 
 - Frontend: set the project root to `apps/web` on Cloudflare Pages or Vercel; build with `npm run build`, output `dist`.

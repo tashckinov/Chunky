@@ -1,4 +1,4 @@
-import "dotenv/config"
+import "../src/load-env.js"
 
 import { readFile, readdir } from "node:fs/promises"
 import path from "node:path"

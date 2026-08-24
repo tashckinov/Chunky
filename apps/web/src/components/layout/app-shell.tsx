@@ -1,4 +1,4 @@
-import { BookMarked, Home, MessageCircleMore, Search, Settings, Sparkles } from "lucide-react"
+import { BookMarked, Home, MessageCircleMore, Search, Settings } from "lucide-react"
 import { NavLink, Outlet, useLocation } from "react-router-dom"
 
 import { Button } from "@/components/ui/button"
@@ -24,7 +24,7 @@ export function AppShell() {
     <div className="app-shell">
       <aside className="sidebar" aria-label="Основная навигация">
         <div className="brand">
-          <span className="brand-mark"><Sparkles size={20} /></span>
+          <img className="brand-logo" src="/chunky-logo.png" alt="" width="40" height="40" />
           <strong>Chunky</strong>
         </div>
         <nav className="nav-list">

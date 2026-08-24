@@ -44,7 +44,7 @@ button { cursor: pointer; }
 .app-shell { width: 100%; max-width: var(--app-max-width); min-height: 100vh; margin-inline: auto; display: grid; grid-template-columns: 248px minmax(0, 1fr); gap: 24px; padding: 24px; }
 .sidebar { position: sticky; top: 24px; align-self: start; min-height: calc(100vh - 48px); display: flex; flex-direction: column; gap: 22px; padding: 6px 4px 4px; }
 .brand { display: flex; align-items: center; gap: 12px; padding: 4px 8px; }
-.brand-mark { width: 36px; height: 36px; border-radius: 12px; display: grid; place-items: center; color: var(--primary); background: linear-gradient(135deg, var(--primary-container), var(--tertiary-container)); }
+.brand-logo { width: 40px; height: 40px; flex: 0 0 auto; object-fit: contain; }
 .brand strong { display: block; font-size: 20px; line-height: 1.15; letter-spacing: -.03em; }
 .nav-list { display: flex; flex-direction: column; gap: 8px; }
 .nav-item { min-height: 52px; padding: 0 16px; display: flex; align-items: center; gap: 12px; border-radius: 999px; color: var(--muted-foreground); font-size: 15px; font-weight: 600; transition: background .15s ease, color .15s ease; }

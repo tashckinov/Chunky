@@ -1,0 +1,24 @@
+{
+  "name": "chunky",
+  "version": "0.1.0",
+  "private": true,
+  "description": "PWA-first English chunk trainer for Russian speakers",
+  "workspaces": [
+    "apps/*"
+  ],
+  "scripts": {
+    "dev": "concurrently -n web,api -c blue,magenta \"npm run dev -w @chunky/web\" \"npm run dev -w @chunky/api\"",
+    "dev:web": "npm run dev -w @chunky/web",
+    "dev:api": "npm run dev -w @chunky/api",
+    "build": "npm run build -w @chunky/web && npm run build -w @chunky/api",
+    "typecheck": "npm run typecheck -w @chunky/web && npm run typecheck -w @chunky/api",
+    "test": "npm run test -w @chunky/api",
+    "db:migrate": "npm run db:migrate -w @chunky/api"
+  },
+  "devDependencies": {
+    "concurrently": "^9.2.1"
+  },
+  "engines": {
+    "node": ">=22.0.0"
+  }
+}

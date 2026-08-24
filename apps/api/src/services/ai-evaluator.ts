@@ -3,7 +3,7 @@ import { Value } from "@sinclair/typebox/value"
 import type { AppConfig } from "../config.js"
 import { evaluationJsonSchema, EvaluationResultSchema, type EvaluationRequest, type EvaluationResult } from "../schemas/evaluation.js"
 
-const systemPrompt = `You evaluate English answers written by Russian-speaking B1-B2 learners. Judge whether the target lexical chunk is used correctly, whether the Russian meaning is preserved, grammar, and naturalness. Be accepting of valid English variants. Keep feedbackRu concise, specific, and in Russian. Return only the required structured result.`
+const systemPrompt = `You evaluate English answers written by Russian-speaking B1-B2 learners. Judge whether the target lexical chunk is used correctly, whether the Russian meaning is preserved, grammar, and naturalness. Be accepting of valid English variants. Keep feedbackRu concise, specific, and in Russian. Write feedbackRu with direct affirmative statements. State the successful parts and the learner's next action. Avoid antithesis, contrastive phrasing, and explanations framed around what something is not. Return only the required structured result.`
 
 export async function evaluateAnswer(input: EvaluationRequest, config: AppConfig): Promise<EvaluationResult> {
   if (config.aiProvider === "mock") return mockEvaluation(input)
@@ -70,7 +70,7 @@ function mockEvaluation(input: EvaluationRequest): EvaluationResult {
     verdict: chunkUsed ? "correct" : "almost",
     score: chunkUsed ? 92 : 72,
     criteria: { chunkUsed, meaningPreserved: true, grammarCorrect: true, naturalness: chunkUsed ? 90 : 78 },
-    feedbackRu: chunkUsed ? "Смысл передан правильно, а целевой chunk использован уместно." : "Ответ понятный, но попробуй встроить именно целевой chunk.",
+    feedbackRu: chunkUsed ? "Смысл передан правильно. Целевой chunk использован уместно." : "Сохрани исходный смысл и добавь целевой chunk в ответ.",
     naturalAnswer: "I didn’t get the ending of the film.",
     alternatives: ["I didn’t understand the ending of the film.", "I didn’t quite get how the film ended."]
   }

@@ -22,7 +22,7 @@ export function PracticePage() {
     try {
       setResult(await evaluateAnswer({ ...task, answer }))
     } catch (caught) {
-      setError(caught instanceof Error ? caught.message : "Не удалось проверить ответ")
+      setError(caught instanceof Error ? caught.message : "Сервис проверки временно недоступен")
     } finally {
       setLoading(false)
     }
@@ -36,7 +36,7 @@ export function PracticePage() {
           <Badge className="border-transparent bg-secondary text-secondary-foreground"><Target size={15} />focus phrase</Badge>
         </CardHeader>
         <CardContent>
-          <div className="practice-prompt"><small>Задание</small><h2>{task.promptRu}</h2><p>Используй целевой chunk, а не дословный перевод.</p></div>
+          <div className="practice-prompt"><small>Задание</small><h2>{task.promptRu}</h2><p>Составь естественную фразу с целевым chunk.</p></div>
           <form onSubmit={submit} className="mt-4">
             <label className="answer-label" htmlFor="answer">Твой ответ</label>
             <Textarea id="answer" value={answer} onChange={(event) => setAnswer(event.target.value)} autoFocus />
@@ -45,7 +45,7 @@ export function PracticePage() {
               <Button type="button" variant="secondary"><Mic size={18} />Сказать вслух</Button>
               <Button type="button" variant="outline"><RefreshCw size={18} />Другой пример</Button>
             </div>
-            {error && <p className="error-message" role="alert">{error}. Проверь, запущен ли API.</p>}
+            {error && <p className="error-message" role="alert">{error}. Запусти API и повтори проверку.</p>}
           </form>
         </CardContent>
       </Card>
@@ -54,7 +54,7 @@ export function PracticePage() {
         <Card className={result ? "feedback-card success" : "feedback-card"} aria-live="polite">
           <CardHeader>
             <span className="feedback-icon"><Check size={20} /></span>
-            <div><CardTitle className="text-lg">{result ? verdictLabel(result.verdict) : "AI-проверка"}</CardTitle><CardDescription>{result ? `${result.score}/100 • chunk ${result.criteria.chunkUsed ? "использован" : "не использован"}` : "Отправь ответ, чтобы увидеть разбор."}</CardDescription></div>
+            <div><CardTitle className="text-lg">{result ? verdictLabel(result.verdict) : "AI-проверка"}</CardTitle><CardDescription>{result ? `${result.score}/100 • ${result.criteria.chunkUsed ? "целевой chunk использован" : "добавь целевой chunk"}` : "Отправь ответ, чтобы увидеть разбор."}</CardDescription></div>
           </CardHeader>
           {result && <CardContent><p className="feedback-text">{result.feedbackRu}</p><strong className="natural-answer">{result.naturalAnswer}</strong></CardContent>}
         </Card>

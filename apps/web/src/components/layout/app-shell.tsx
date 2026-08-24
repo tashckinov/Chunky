@@ -50,7 +50,9 @@ export function AppShell() {
             <span className="avatar" aria-label="Профиль Максима">M</span>
           </div>
         </header>
-        <Outlet />
+        <div className="page-content">
+          <Outlet />
+        </div>
       </main>
     </div>
   )

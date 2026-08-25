@@ -128,6 +128,8 @@ export async function registerAdmin(app: FastifyInstance, config: AppConfig) {
   const adapterKnex = metadata.tables()[0]?.knex
   if (adapterKnex) app.addHook("onClose", () => adapterKnex.destroy())
 
+  app.get(`${ADMIN_ROOT_PATH}/`, async (_request, reply) => reply.redirect(ADMIN_ROOT_PATH))
+
   await AdminJSFastify.buildAuthenticatedRouter(
     admin,
     {

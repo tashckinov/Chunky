@@ -12,7 +12,7 @@ export type EvaluationResult = {
   alternatives: string[]
 }
 
-const apiUrl = import.meta.env.VITE_API_URL ?? "http://localhost:3000"
+export const apiUrl = import.meta.env.VITE_API_URL ?? "http://localhost:3000"
 
 export async function evaluateAnswer(payload: {
   targetChunk: string
